@@ -8,6 +8,7 @@ packages = [{include = "etd_la", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
+numpy = "^1.26.2"
 
 
 [build-system]
