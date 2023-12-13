@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def jacobi_iteration(A, b, x0=None, tol=1e-6, max_iter=1000):
     """
     Perform Jacobi iteration to solve the linear system Ax = b.
@@ -23,7 +24,7 @@ def jacobi_iteration(A, b, x0=None, tol=1e-6, max_iter=1000):
         x_new = np.zeros_like(x)
 
         for i in range(n):
-            sigma = np.dot(A[i, :i], x[:i]) + np.dot(A[i, i + 1:], x[i + 1:])
+            sigma = np.dot(A[i, :i], x[:i]) + np.dot(A[i, i + 1 :], x[i + 1 :])
             x_new[i] = (b[i] - sigma) / A[i, i]
 
         if np.linalg.norm(x_new - x) < tol:
@@ -31,14 +32,14 @@ def jacobi_iteration(A, b, x0=None, tol=1e-6, max_iter=1000):
 
         x = x_new
 
-    raise ValueError("Jacobi iteration did not converge within the specified number of iterations.")
+    raise ValueError(
+        "Jacobi iteration did not converge within the specified number of iterations."
+    )
+
 
 if __name__ == "__main__":
-# Example usage:
-    A = np.array([[4, -1, 0, 0],
-                  [-1, 4, -1, 0],
-                  [0, -1, 4, -1],
-                  [0, 0, -1, 3]])
+    # Example usage:
+    A = np.array([[4, -1, 0, 0], [-1, 4, -1, 0], [0, -1, 4, -1], [0, 0, -1, 3]])
 
     b = np.array([15, 10, 10, 10])
 
