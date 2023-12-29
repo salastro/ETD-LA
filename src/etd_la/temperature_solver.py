@@ -71,3 +71,15 @@ def solve_temperature_equation(size, left_temp, up_temp, right_temp, down_temp):
     )
 
     return temperature_solution
+
+
+if __name__ == "__main__":
+    # Example usage:
+    s, u, r, d = 10, 0, 100, 0
+    
+    coefficient_matrix, rhs_vector = generate_coefficient_matrix(s, u, r, d, d)
+    temperature_solution = solve_temperature_equation(s, u, r, d, d)
+    
+    print(f"Temperature solution:\n{temperature_solution}")
+    print(f"Coefficient matrix:\n{coefficient_matrix}")
+    print(f"Righthand side vector:\n{rhs_vector}")

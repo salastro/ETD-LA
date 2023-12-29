@@ -58,27 +58,14 @@ def calculate_inverse_solution(A, b):
 
 
 if __name__ == "__main__":
-    # Define the coefficient matrix M
-    matrix_M = np.array([[0.2, 0.3, 0.5], [0.4, 0.3, 0.3], [0.4, 0.4, 0.2]])
-
-    # Define the constant vector B
-    vector_B = np.array([1, 1, 1])
-
-    # Calculate the solution vector m
-    solution_vector_m = calculate_inverse_solution(matrix_M, vector_B)
-
-    # Print the solution vector m
-    print(solution_vector_m)
-
-
-if __name__ == "__main__":
     # Example usage:
     A = np.array([[4, -1, 0, 0], [-1, 4, -1, 0], [0, -1, 4, -1], [0, 0, -1, 3]])
-
     b = np.array([15, 10, 10, 10])
 
-    initial_guess = np.zeros(len(b))
-    solution, num_iterations = jacobi_iteration(A, b, x0=initial_guess)
+    jacobi_solution, num_iterations = jacobi_iteration(A, b, tol=1e-8)
+    inverse_solution = calculate_inverse_solution(A, b)
 
-    print("Solution:", solution)
-    print("Number of iterations:", num_iterations)
+    print(f"Inverse solution:\t{inverse_solution}")
+    print(
+        f"Jacobi solution:\t{jacobi_solution}\t(found in {num_iterations} iterations)"
+    )
