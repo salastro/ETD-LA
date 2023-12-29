@@ -11,8 +11,9 @@ def plot_temperature_distribution(size, temperature):
     Returns:
     - None
     """
-    plt.imshow(temperature.reshape(size, size))
+    plt.imshow(temperature.reshape(size, size), cmap="RdYlBu_r", interpolation="gaussian")
     plt.colorbar()
+    plt.contour(temperature.reshape(size, size), cmap="hot")
     plt.title("Temperature Distribution")
     plt.xlabel("Column Index")
     plt.ylabel("Row Index")
