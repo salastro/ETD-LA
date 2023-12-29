@@ -1,6 +1,6 @@
 import argparse
 
-from plotting import plot_temperature_distribution
+from plotting import plot_temperature_distribution_2d, plot_temperature_distribution_3d
 from temperature_solver import solve_temperature_equation
 
 
@@ -21,6 +21,11 @@ def parse_arguments():
     parser.add_argument(
         "down_boundary_temp", type=float, help="Temperature at the lower boundary"
     )
+    parser.add_argument(
+        "graph_type",
+        choices=["2d", "3d", "2d-animation", "3d-animation"],
+        help="Type of graph to plot",
+    )
 
     return parser.parse_args()
 
@@ -39,7 +44,10 @@ def main():
     )
 
     # Plot the temperature distribution
-    plot_temperature_distribution(args.grid_size, temperature_solution)
+    if args.graph_type == "2d":
+        plot_temperature_distribution_2d(args.grid_size, temperature_solution)
+    elif args.graph_type == "3d":
+        plot_temperature_distribution_3d(args.grid_size, temperature_solution)
 
 
 if __name__ == "__main__":
