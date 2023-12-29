@@ -19,6 +19,7 @@ def jacobi_iteration(A, b, x0=None, tol=1e-6, max_iter=1000):
 
     n = len(b)
     x = x0 if x0 is not None else np.zeros(n)
+    z_iter = np.zeros((max_iter, n))
 
     for k in range(max_iter):
         x_new = np.zeros_like(x)
@@ -26,9 +27,10 @@ def jacobi_iteration(A, b, x0=None, tol=1e-6, max_iter=1000):
         for i in range(n):
             sigma = np.dot(A[i, :i], x[:i]) + np.dot(A[i, i + 1 :], x[i + 1 :])
             x_new[i] = (b[i] - sigma) / A[i, i]
+            z_iter[k] = x_new
 
         if np.linalg.norm(x_new - x) < tol:
-            return x_new, k + 1
+            return x_new, k + 1, z_iter[:k + 1]
 
         x = x_new
 
@@ -62,10 +64,11 @@ if __name__ == "__main__":
     A = np.array([[4, -1, 0, 0], [-1, 4, -1, 0], [0, -1, 4, -1], [0, 0, -1, 3]])
     b = np.array([15, 10, 10, 10])
 
-    jacobi_solution, num_iterations = jacobi_iteration(A, b, tol=1e-8)
+    jacobi_solution, num_iterations, iterations_array = jacobi_iteration(A, b, tol=1e-8)
     inverse_solution = calculate_inverse_solution(A, b)
 
     print(f"Inverse solution:\t{inverse_solution}")
     print(
         f"Jacobi solution:\t{jacobi_solution}\t(found in {num_iterations} iterations)"
     )
+    print(f"Iterations array:\t{iterations_array}")
