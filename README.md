@@ -1,5 +1,7 @@
 # Equilibrium Temperature Distributions using Linear Algebra in Python
 
+![Preview](images/Figure_1.png)
+
 ## Overview
 
 This Python project focuses on solving equilibrium temperature distributions on a 2D grid using linear algebraic techniques, specifically Jacobi iteration and matrix inversion. The project is structured into several modules to enhance readability, modularity, and ease of understanding.
