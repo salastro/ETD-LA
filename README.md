@@ -53,7 +53,7 @@ To run the project locally, follow these steps:
 3. Run the `main.py` script:
 
    ```bash
-   poetry run src/etd_la/main.py
+   poetry run src/etd_la/main.py [-h] grid_size left_boundary_temp up_boundary_temp right_boundary_temp down_boundary_temp {2d,3d,2d-animation,3d-animation}
    ```
 
    This will execute the example problem, solve the temperature equation, and display the resulting temperature distribution.
